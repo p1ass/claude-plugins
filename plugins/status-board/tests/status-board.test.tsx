@@ -9,7 +9,7 @@ const BOARD = `## 目的
 ## 判断待ちの事項
 - なし
 ## 現状
-- 帯の描画を修正する PR（#12）がレビュー待ち
+- ペインの描画を修正する PR（#12）がレビュー待ち
 ## 決定事項
 - なし
 ## 次の作業
@@ -28,10 +28,10 @@ test('人間が入力した指示から system-reminder を除いて記録する
       timestamp: '2026-11-25T09:00:00.000Z',
       promptSource: 'typed',
       origin: { kind: 'human' },
-      message: { role: 'user', content: '<system-reminder>注意</system-reminder>帯を修正して' },
+      message: { role: 'user', content: '<system-reminder>注意</system-reminder>ペインを修正して' },
     }),
   )
-  expect(record.events).toEqual([{ kind: 'prompt', ts: Date.parse('2026-11-25T09:00:00.000Z'), text: '帯を修正して' }])
+  expect(record.events).toEqual([{ kind: 'prompt', ts: Date.parse('2026-11-25T09:00:00.000Z'), text: 'ペインを修正して' }])
 })
 
 test('プラグインが追加した入力は指示として記録しない', () => {
@@ -87,7 +87,7 @@ test('5 つの見出しがそろった要約を受け入れる', () => {
 
 test('履歴のカードは指示ごとに分かれ、計画と完了した手順の数を集計する', () => {
   const cards = buildCards([
-    { kind: 'prompt', ts: 1, text: '帯を修正して' },
+    { kind: 'prompt', ts: 1, text: 'ペインを修正して' },
     { kind: 'plan', ts: 2, isFresh: true, steps: 3 },
     { kind: 'step', ts: 3, to: 'completed', text: '調査' },
     { kind: 'pr', ts: 4, number: 12, url: 'https://github.com/a/x/pull/12' },
