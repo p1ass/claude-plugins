@@ -1,5 +1,5 @@
 {
-  "name": "status-board-ja",
+  "name": "status-board",
   "version": "0.1.0",
   "description": "セッションの目的、現状、判断待ちの事項をモデルが要約したステータスボードと、指示ごとの履歴をペインに表示し、現在の状況をプロンプトの上に 1 行で表示する",
   "types": "./types/index.d.ts"

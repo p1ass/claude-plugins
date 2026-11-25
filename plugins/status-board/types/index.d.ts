@@ -37,7 +37,7 @@ export type PaneView = {
 
 declare module 'claude-code' {
   interface PluginState {
-    'status-board-ja': {
+    'status-board': {
       record: Shaped<SessionRecord>
       board: Shaped<Board | null>
       activity: Activity

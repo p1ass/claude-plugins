@@ -98,9 +98,9 @@ test('履歴のカードは指示ごとに分かれ、計画と完了した手�
 test('ボードがまだなければ、ペインに作成の案内を表示する', async ($, on) => {
   on('clock.now', () => ({ value: Date.parse('2026-11-25T09:00:00.000Z') }))
   const ui = await $.ui.mount({
-    plugin: 'status-board-ja',
+    plugin: 'status-board',
     component: 'Pane',
-    requestId: 'status-board-ja',
+    requestId: 'status-board',
     surface: 'terminal',
     props: {
       title: 'ステータスボード',

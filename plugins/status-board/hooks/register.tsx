@@ -11,7 +11,7 @@ import type { Clock } from './texts'
 
 type Engine = EngineInterface
 
-const PANE = 'status-board-ja'
+const PANE = 'status-board'
 const COMMAND = 'board'
 const CHUNK = 4 * 1024 * 1024
 const LINE_LIMIT = 64 * 1024 * 1024
@@ -24,19 +24,19 @@ const FAILURES_SHOWN = 3
 const CARDS_SHOWN = 5
 const NEWLINE = 0x0a
 
-const record = atom({ plugin: 'status-board-ja', key: 'record' } as const, createRecord(), { shape: 'record-1' })
-const board = atom({ plugin: 'status-board-ja', key: 'board' } as const, null, { shape: 'board-2' })
-const activity = atom({ plugin: 'status-board-ja', key: 'activity' } as const, {
+const record = atom({ plugin: 'status-board', key: 'record' } as const, createRecord(), { shape: 'record-1' })
+const board = atom({ plugin: 'status-board', key: 'board' } as const, null, { shape: 'board-2' })
+const activity = atom({ plugin: 'status-board', key: 'activity' } as const, {
   isTurnRunning: false,
   lastTurnEndedAt: null,
   lastActivityAt: 0,
 } satisfies Activity)
-const isSummarizing = atom({ plugin: 'status-board-ja', key: 'isSummarizing' } as const, false)
-const view = atom({ plugin: 'status-board-ja', key: 'view' } as const, {
+const isSummarizing = atom({ plugin: 'status-board', key: 'isSummarizing' } as const, false)
+const view = atom({ plugin: 'status-board', key: 'view' } as const, {
   isHistoryShown: false,
   isAllShown: false,
 } satisfies PaneView)
-const failure = atom({ plugin: 'status-board-ja', key: 'failure' } as const, null as string | null)
+const failure = atom({ plugin: 'status-board', key: 'failure' } as const, null as string | null)
 
 type Reader = { path: string; offset: number; carry: Uint8Array; isSkipping: boolean; failures: number; lastReadAt: number }
 

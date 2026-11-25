@@ -4,16 +4,16 @@ p1ass が個人で使う Claude Code の mod のマーケットプレイスで�
 
 | mod | 内容 |
 |---|---|
-| `status-board-ja` | モデルが要約したステータスボードと指示ごとの履歴をペインに表示し、現在の状況をプロンプトの上に 1 行で表示する |
+| `status-board` | モデルが要約したステータスボードと指示ごとの履歴をペインに表示し、現在の状況をプロンプトの上に 1 行で表示する |
 
 ## インストール
 
 ```text
 /plugin marketplace add p1ass/claude-plugins
-/plugin install status-board-ja@p1ass-plugins
+/plugin install status-board@p1ass-plugins
 ```
 
-## status-board-ja
+## status-board
 
 `/board` か、プロンプトの上の帯にある「ステータスボード」のボタンで、ペインを開閉します。
 
@@ -56,5 +56,5 @@ p1ass が個人で使う Claude Code の mod のマーケットプレイスで�
 mod を編集したら、Claude Code で `/reload-plugins` を実行すると反映されます。テストは次のコマンドで実行します。
 
 ```bash
-claude plugin test plugins/status-board-ja
+claude plugin test plugins/status-board
 ```

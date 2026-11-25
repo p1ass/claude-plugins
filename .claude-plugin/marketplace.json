@@ -4,8 +4,8 @@
   "description": "p1ass が個人で使う Claude Code の mod",
   "plugins": [
     {
-      "name": "status-board-ja",
-      "source": "./plugins/status-board-ja",
+      "name": "status-board",
+      "source": "./plugins/status-board",
       "description": "モデルが要約したステータスボードと指示ごとの履歴をペインに表示し、現在の状況をプロンプトの上に 1 行で表示する"
     }
   ]
