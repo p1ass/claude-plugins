@@ -1,13 +1,10 @@
-import type { Color } from 'claude-code'
-
-import type { SessionRecord, StepStatus, TimelineEvent } from '../types'
+import type { SessionRecord } from '../types'
 
 export const TEXTS = {
   paneTitle: 'ステータスボード',
   commandDescription: 'ステータスボードのペインを開閉する',
   commandOpened: 'ステータスボードを開きました。',
   commandClosed: 'ステータスボードを閉じました。',
-  bandButton: 'ステータスボード',
   emptyBoard: 'ステータスボードはまだありません。下のボタンで作成できます。',
   create: 'ステータスボードを作成',
   update: 'ステータスボードを更新',
@@ -23,28 +20,6 @@ export const TEXTS = {
   readFailed: (reason: string) => `ステータスボード: トランスクリプトを読み取れません: ${reason}`,
   askLabel: '質問',
 } as const
-
-const STEP_LABELS: Record<StepStatus, string> = { completed: '完了', in_progress: '実行中', pending: '未着手' }
-const STEP_COLORS: Record<StepStatus, Color> = { completed: 'success', in_progress: 'permission', pending: 'inactive' }
-
-export type EventView = { pip: string; color: Color; label: string | null; text: string }
-
-export function viewEvent(event: TimelineEvent): EventView {
-  switch (event.kind) {
-    case 'step':
-      return { pip: event.to === 'pending' ? '○' : '●', color: STEP_COLORS[event.to], label: STEP_LABELS[event.to], text: oneLine(event.text) }
-    case 'plan':
-      return { pip: '●', color: 'permission', label: null, text: `計画を${event.isFresh ? '作成' : '更新'}（${event.steps} 手順）` }
-    case 'recap':
-      return { pip: '○', color: 'warning', label: '報告', text: oneLine(event.text) + (event.ask ? ` / 質問: ${oneLine(event.ask)}` : '') }
-    case 'dialog':
-      return { pip: '●', color: 'warning', label: '質問', text: oneLine(event.text) + (event.more > 0 ? `（ほか ${event.more} 件）` : '') }
-    case 'prompt':
-      return { pip: '○', color: 'remember', label: '指示', text: oneLine(event.text) }
-    case 'pr':
-      return { pip: '○', color: 'permission', label: null, text: `PR #${event.number} を関連付け` }
-  }
-}
 
 export type CurrentStep = { label: string; text: string; since: number | null }
 

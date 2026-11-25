@@ -6,7 +6,7 @@ import { HEADINGS, SUMMARY_PROMPT, cleanReply, hasAllHeadings, linkPullRequests 
 import { buildCards, buildFooter } from './history'
 import type { Card } from './history'
 import { applyLine, createRecord } from './transcript'
-import { TEXTS, createClock, findCurrentStep, formatTokens, oneLine, viewEvent } from './texts'
+import { TEXTS, createClock, findCurrentStep, formatTokens, oneLine } from './texts'
 import type { Clock } from './texts'
 
 type Engine = EngineInterface
@@ -103,29 +103,6 @@ export const register: Register = on => {
     return result
   })
 
-  on('ui.render', { component: 'AbovePrompt' }, async ($, e, next) => {
-    if (e.props.hasSurvey) return next(e)
-    const current = await read($, record)
-    const latest = current.events.at(-1)
-    if (latest === undefined) return next(e)
-    const { Box, Text, Button } = $.ui.resolve(e)
-    const now = await $.clock.now()
-    const step = findCurrentStep(current)
-    const shown = step
-      ? { pip: '●', color: 'permission' as const, label: step.label, text: step.text, ts: step.since }
-      : { ...viewEvent(latest), ts: latest.ts }
-    return (
-      <Box flexDirection="row">
-        <Text color={shown.color}>{shown.pip} </Text>
-        {shown.label !== null && <Text bold>{shown.label} </Text>}
-        <Box flexShrink={1}>
-          <Text wrap="truncate-end">{shown.text}</Text>
-        </Box>
-        {shown.ts !== null && <Text dimColor> · {ctx.clock.format(shown.ts, now)} </Text>}
-        <Button key="open" label={TEXTS.bandButton} onPress={() => togglePane($)} />
-      </Box>
-    )
-  })
 
   on('ui.render', { component: 'Pane', requestId: PANE }, async ($, e) => {
     const { Box, Text, Button, Markdown } = $.ui.resolve(e)
